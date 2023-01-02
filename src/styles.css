@@ -1,1 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    /* ## Colors */
+    /* ### Primary */
+    --marine-blue: hsl(213, 96%, 18%);
+    --purplish-blue: hsl(243, 100%, 62%);
+    --pastel-blue: hsl(228, 100%, 84%);
+    --light-blue: hsl(206, 94%, 87%);
+    --strawberry-red: hsl(354, 84%, 57%);
+    /* ### Neutral */
+    --cool-gray: hsl(231, 11%, 63%);
+    --light-gray: hsl(229, 24%, 87%);
+    --magnolia: hsl(217, 100%, 97%);
+    --alabaster: hsl(231, 100%, 99%);
+    --white: hsl(0, 0%, 100%);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--light-blue);
+}
+
+
+/* Sidebar stepper */
+
+.mat-step-header .mat-step-icon-selected {
+    background-color: var(--light-blue)!important;
+    color: black;
+}
+
+.mat-step-icon {
+    background-color: rgba(0, 0, 0, .1)!important;
+    color: white;
+    border-color: white;
+    border: 1px solid;
+    height: 40px!important;
+    width: 40px!important;
+    font-weight: 500;
+}
+
+.mat-stepper-vertical-line::before {
+    border-left-width: 0!important;
+}
+
+.mat-vertical-content {
+    padding: 0!important;
+}
+
+.mat-step-text-label {
+    color: white;
+}

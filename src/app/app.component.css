@@ -1,0 +1,59 @@
+.mat-mdc-card {
+    border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 20px));
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 30%), 0px 1px 1px 0px rgb(0 0 0 / 24%), 0px 1px 3px 0px rgb(0 0 0 / 22%);
+}
+
+.sidebar {
+    height: 544px;
+    max-width: 274px;
+    color: white;
+    background-image: url('../assets/images/bg-sidebar-desktop.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.content {
+    height: 450px;
+}
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal {
+    display: revert;
+}
+
+
+/* Step1 */
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    background-image: none;
+}
+
+
+/* end Step1 */
+
+
+/* Step2 */
+
+.switch-check-input {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input-checked-bg-color {
+    color: red;
+}
+
+.ligthblue {
+    background-color: var(--magnolia);
+}
+
+
+/* end Step2 */
+
+.btn-marine {
+    background-color: var(--marine-blue);
+    color: white;
+}
