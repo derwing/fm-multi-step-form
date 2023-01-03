@@ -57,3 +57,12 @@ body {
 .mat-step-text-label {
     color: white;
 }
+
+@media (max-width: 767px) {
+    .mat-stepper-horizontal-line {
+        border-top-style: hidden!important;
+    }
+    .mat-step-icon {
+        width: 38px!important;
+    }
+}

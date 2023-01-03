@@ -1,55 +1,56 @@
 <div class="container">
-    <div class="row justify-content-center pt-5">
-        <mat-card class="col-md-9 col-12 card-container px-4 py-3">
+    <div class="row justify-content-center pt-5 container-row">
+        <mat-card class="col-md-9 col-11 card-container px-4 py-3">
             <div class="row">
-                <div class="col-5 sidebar pt-2">
-                    <mat-stepper orientation="vertical" #stepper>
+                <div class="col-md-5 col-12 sidebar pt-2">
+                    <mat-stepper [orientation]="orientationStepper" #stepper [linear]="false">
                         <mat-step>
                             <ng-template matStepLabel>
-                                <div (click)="changeStep(0)">
+                                <div class="hidden-sm-down">
                                     <span>STEP 1</span> <br> <span class="fw-bold">YOUR INFO</span>
                                 </div>
 
                             </ng-template>
                         </mat-step>
                         <mat-step>
+                            <!-- (click)="changeStep(1)" -->
                             <ng-template matStepLabel>
-                                <div (click)="changeStep(1)">
+                                <div class="hidden-sm-down">
                                     <span>STEP 2</span> <br> <span class="fw-bold">SELECT PLAN</span>
                                 </div>
                             </ng-template>
                         </mat-step>
                         <mat-step>
                             <ng-template matStepLabel>
-                                <div (click)="changeStep(2)">
+                                <div class="hidden-sm-down">
                                     <span>STEP 3</span> <br> <span class="fw-bold">ADD-ONS</span>
                                 </div>
 
                             </ng-template>
                         </mat-step>
                         <mat-step>
-                            <ng-template matStepLabel (click)="step = 3">
-                                <div (click)="changeStep(3)">
+                            <ng-template matStepLabel>
+                                <div class="hidden-sm-down">
                                     <span>STEP 4</span> <br> <span class="fw-bold">SUMMARY</span>
                                 </div>
                             </ng-template>
                         </mat-step>
                     </mat-stepper>
                 </div>
-                <div class="col-7">
+                <div class="col-md-7 col-12 step-content">
                     <div [ngSwitch]="step">
                         <div *ngSwitchCase="0">
                             <div class="content py-5 pt-5 ps-5 pe-1">
-                                <h1>Select your plan</h1>
-                                <p class="text-secondary mb-4">You have the option of monthly or yearly billing</p>
+                                <h1 class="fw-bold">Personal info</h1>
+                                <p class="text-secondary mb-4">Please provide your name, email address, and phone number.</p>
                                 <form [formGroup]="step1Form">
                                     <div class="mb-3">
                                         <label for="exampleInputName" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName" aria-describedby="Name" formControlName="name">
+                                        <input type="text" class="form-control" id="exampleInputName" aria-describedby="Name" formControlName="name" placeholder="e.g Stephen King">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="e.g. stephenking@lorem.com">
                                     </div>
                                     <div class="mb-3">
                                         <div class="col d-flex justify-content-between">
@@ -69,32 +70,49 @@
                                 <h1>Select your plan</h1>
                                 <p class="text-secondary mb-4">You have the option of monthly or yearly billing</p>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-md-4 col-12 p-1" [ngClass]="{'mb-2': isMobile}">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img class="mb-5" src="../assets/images/icon-arcade.svg" alt="arcade-icon">
-                                                <h5 class="card-title mb-0">Arcade</h5>
-                                                <span class="card-text text-secondary">$9/mo</span>
+                                                <div class="row">
+                                                    <div class="col-2 col-md-12">
+                                                        <img class="" src="../assets/images/icon-arcade.svg" alt="arcade-icon" [ngClass]="{'align-text-top': isMobile, 'mb-5': !isMobile}">
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5 class="card-title mb-0">Arcade</h5>
+                                                        <p class="card-text text-secondary">$9/mo</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md-4 col-12 p-1" [ngClass]="{'mb-2': isMobile}">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img class="mb-5" src="../assets/images/icon-advanced.svg" alt="arcade-icon">
-
-                                                <h5 class="card-title mb-0">Advanced</h5>
-                                                <span class="card-text text-secondary">$12/mo</span>
+                                                <div class="row">
+                                                    <div class="col-2 col-md-12">
+                                                        <img class="" src="../assets/images/icon-advanced.svg" alt="advance-icon" [ngClass]="{'align-text-top': isMobile, 'mb-5': !isMobile}">
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5 class="card-title mb-0">Advanced</h5>
+                                                        <span class="card-text text-secondary">$12/mo</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md-4 col-12 p-1" [ngClass]="{'mb-2': isMobile}">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img class="mb-5" src="../assets/images/icon-pro.svg" alt="arcade-icon">
+                                                <div class="row">
+                                                    <div class="col-2 col-md-12">
+                                                        <img class="mb-5" src="../assets/images/icon-pro.svg" alt="pro-icon" [ngClass]="{'align-text-top': isMobile, 'mb-5': !isMobile}">
 
-                                                <h5 class="card-title mb-0">Pro</h5>
-                                                <span class="card-text text-secondary">$15/mo</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5 class="card-title mb-0">Pro</h5>
+                                                        <span class="card-text text-secondary">$15/mo</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -103,9 +121,9 @@
                                     <div class="col-11 ligthblue rounded py-1 mb-5">
                                         <span>
                                         <div class=" form-switch text-center">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked" [ngClass]="{'fw-bold': !periodSwitch, 'text-secondary': periodSwitch}">Monthly</label>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked" [ngClass]="{'fw-bold ': !periodSwitch, 'text-secondary ': periodSwitch}">Monthly</label>
                                             <input class="form-check-input switch-check-input mx-2" type="checkbox" role="switch" id="flexSwitchCheckChecked" [(ngModel)]="periodSwitch">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked" [ngClass]="{'fw-bold': periodSwitch, 'text-secondary': !periodSwitch}">Yearly</label>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked" [ngClass]="{'fw-bold ': periodSwitch, 'text-secondary ': !periodSwitch}">Yearly</label>
                                         </div>
                                         </span>
                                     </div>
@@ -120,8 +138,6 @@
                                 <p class="text-secondary mb-0">Add-ons help enhance your gaming experience</p>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <div class="form-check">
-                                        </div>
                                         <div class="card">
                                             <div class="card-body pb-0 ligthblue">
                                                 <div class="row">
@@ -130,12 +146,12 @@
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                                                         </div>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col pe-0 add-ons-text">
                                                         <h5 class="card-title mb-0 fw-bold">Online service</h5>
                                                         <p class="text-secondary">Access to multiplayer games</p>
                                                     </div>
-                                                    <div class="col-3 text-end">
-                                                        <span class="card-text text-secondary text-end">+$1/mo</span>
+                                                    <div class="col-3 col-md-3 text-end p-0">
+                                                        <span class="card-text text-primary text-end">+$1/mo</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -148,13 +164,12 @@
                                                     <div class="col-1">
                                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col pe-0 add-ons-text">
                                                         <h5 class="card-title mb-0 fw-bold">Larger storage</h5>
                                                         <p class="text-secondary">Extra 1TB of cloud save</p>
                                                     </div>
-                                                    <div class="col-3">
-                                                        <span class="card-text text-secondary">+$2/mo</span>
-
+                                                    <div class="col-3 col-md-3 text-end p-0">
+                                                        <span class="card-text text-primary">+$2/mo</span>
                                                     </div>
                                                 </div>
 
@@ -169,13 +184,12 @@
                                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
 
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col pe-0 add-ons-text">
                                                         <h5 class="card-title mb-0 fw-bold">Customizable profile</h5>
                                                         <p class="text-secondary">Custom theme on your profile</p>
                                                     </div>
-                                                    <div class="col-3">
-                                                        <span class="card-text text-secondary">+$2/mo</span>
-
+                                                    <div class="col-3 col-md-3 text-end p-0">
+                                                        <span class="card-text text-primary">+$2/mo</span>
                                                     </div>
                                                 </div>
 
@@ -187,17 +201,78 @@
                         </div>
 
                         <div *ngSwitchCase="3">
-                            <div class="content py-5 ps-5 pe-1">
+                            <div class="content py-5 ps-4 pe-1" *ngIf="finished">
+                                <div class="row pt-4">
+                                    <div class="col text-center pt-4">
+                                        <img src="../assets/images/icon-thank-you.svg" alt="icon-checkmark">
+                                        <h2 class="fw-bold mt-4">Thank you!</h2>
+                                        <p class="text-secondary">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content py-5 ps-5 pe-1" *ngIf="!finished">
                                 <h1>Finishing up</h1>
-                                <p class="text-secondary mb-0">Double-check everything looks OK before confirming</p>
+                                <p class="text-secondary">Double-check everything looks OK before confirming</p>
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <div class="card border-0 ">
+                                            <div class="card-body pb-0 ligthblue rounded-4">
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <p class="mb-0 fw-bold">Arcade (Monthly)</p>
+                                                        <button class="btn btn-link p-0" (click)="changeStep(1)">Change</button>
+                                                    </div>
+                                                    <div class="col-md-3 col-4 text-end">
+                                                        <span class="card-text text-secondary text-end">+$9/mo</span>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <p class="mb-0 text-secondary">Online service</p>
+                                                        <!-- <button class="btn btn-link p-0" (click)="changeStep(1)">Change</button> -->
+                                                    </div>
+                                                    <div class="col-md-3 col-4 text-end">
+                                                        <span class="card-text text-secondary text-end">+$1/mo</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <div class="col">
+                                                        <p class="mb-0 text-secondary">Largest storage</p>
+                                                        <!-- <button class="btn btn-link p-0" (click)="changeStep(1)">Change</button> -->
+                                                    </div>
+                                                    <div class="col-md-3 col-4 text-end">
+                                                        <span class="card-text text-secondary text-end">+$2/mo</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="card border-0">
+                                            <div class="card-body pb-0">
+                                                <div class="row">
+                                                    <div class="col p-0 text-center">
+                                                        <p class="text-secondary">Total (per month)</p>
+                                                    </div>
+                                                    <div class="col-md-4 col-6 text-end">
+                                                        <h4 class="card-text color-marine">+$12/mo</h4>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
 
-                        <div class="mt-5" [ngClass]="{'text-end': step === 0, 'd-flex justify-content-between': step > 0}">
+                        <div class="mt-5" [ngClass]="{'text-end ': step === 0, 'd-flex justify-content-between ': step > 0, 'mobile-btns ': isMobile}">
                             <button *ngIf="step > 0" class="btn btn-outline-secondary border-0 ms-4" (click)="backStep()">Go Back</button>
                             <button class="btn btn-marine" (click)="nextStep()" *ngIf="step < 3">Next Step</button>
-                            <button class="btn btn-primary disabled" *ngIf="step > 2">Next Step</button>
+                            <button class="btn btn-primary disabled" *ngIf="step > 2">Confirm</button>
                         </div>
                     </div>
 

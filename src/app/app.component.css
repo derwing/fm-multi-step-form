@@ -53,7 +53,82 @@
 
 /* end Step2 */
 
+
+/* Step 4 */
+
+.finish-list {
+    border-bottom: 1px lightgray solid;
+}
+
+.color-marine {
+    color: var(--marine-blue);
+}
+
+
+/* End step 4 */
+
 .btn-marine {
     background-color: var(--marine-blue);
     color: white;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+    .hidden-sm-down {
+        display: none !important;
+    }
+    .container {
+        background-image: url('../assets/images/bg-sidebar-mobile.svg');
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .card-container {
+        margin-top: 3rem;
+    }
+    .mat-stepper-horizontal-line {
+        border: none;
+    }
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 10%;
+        background-image: none;
+        max-width: 73%;
+    }
+    .content {
+        padding: 1rem!important;
+        height: auto;
+    }
+    .step-content {
+        padding: 0;
+    }
+    /* Step3 */
+    .card-body {
+        padding-left: 0.5rem;
+    }
+    .add-ons-text h5 {
+        font-size: 1rem;
+    }
+    .add-ons-text p {
+        font-size: 0.8rem;
+    }
+    .add-ons-text p {
+        font-size: 0.8rem;
+    }
+    /* Mobile bottoms */
+    .mobile-btns {
+        background-color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        right: 0;
+        height: 10%;
+    }
+    .mobile-btns button {
+        margin: 5%;
+        height: 40px;
+    }
 }
