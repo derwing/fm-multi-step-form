@@ -29,6 +29,9 @@ body {
 }
 
 
+/* Container position */
+
+
 /* Sidebar stepper */
 
 .mat-step-header .mat-step-icon-selected {
@@ -58,7 +61,20 @@ body {
     color: white;
 }
 
+@media (min-width:1025px) {
+    .container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
 @media (max-width: 767px) {
+    html,
+    body {
+        height: 100%;
+    }
     .mat-stepper-horizontal-line {
         border-top-style: hidden!important;
     }
