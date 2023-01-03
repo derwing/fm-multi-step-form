@@ -139,11 +139,11 @@
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <div class="card">
-                                            <div class="card-body pb-0 ligthblue">
+                                            <div class="card-body pb-0" [ngClass]="{'ligthblue': onlineService}">
                                                 <div class="row">
                                                     <div class="col-1">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="onlineService">
                                                         </div>
                                                     </div>
                                                     <div class="col pe-0 add-ons-text">
@@ -159,10 +159,10 @@
                                     </div>
                                     <div class="col-12 mb-2">
                                         <div class="card">
-                                            <div class="card-body pb-0 ligthblue">
+                                            <div class="card-body pb-0" [ngClass]="{'ligthblue': largerStorage}">
                                                 <div class="row">
                                                     <div class="col-1">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="largerStorage">
                                                     </div>
                                                     <div class="col pe-0 add-ons-text">
                                                         <h5 class="card-title mb-0 fw-bold">Larger storage</h5>
@@ -178,10 +178,10 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="card">
-                                            <div class="card-body pb-0 ">
+                                            <div class="card-body pb-0" [ngClass]="{'ligthblue': customProfile}">
                                                 <div class="row">
                                                     <div class="col-1">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="customProfile">
 
                                                     </div>
                                                     <div class="col pe-0 add-ons-text">
@@ -269,10 +269,10 @@
                         </div>
 
 
-                        <div class="mt-5" [ngClass]="{'text-end ': step === 0, 'd-flex justify-content-between ': step > 0, 'mobile-btns ': isMobile}">
+                        <div class="mt-5" *ngIf="!finished" [ngClass]="{'text-end ': step === 0, 'd-flex justify-content-between ': step > 0, 'mobile-btns ': isMobile}">
                             <button *ngIf="step > 0" class="btn btn-outline-secondary border-0 ms-4" (click)="backStep()">Go Back</button>
                             <button class="btn btn-marine" (click)="nextStep()" *ngIf="step < 3">Next Step</button>
-                            <button class="btn btn-primary disabled" *ngIf="step > 2">Confirm</button>
+                            <button class="btn btn-primary" *ngIf="step > 2" (click)="finishSuscription()">Confirm</button>
                         </div>
                     </div>
 

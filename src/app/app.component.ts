@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('stepper') stepper!: MatStepper;
-  step: number = 1;
+  step: number = 0;
   title = 'fm-multi-step-form';
   periodSwitch: boolean = false;
   step1Form;
@@ -24,9 +24,12 @@ export class AppComponent implements AfterViewInit {
   click1: any;
   click2: any;
   click3: any;
-  finished: boolean = true;
+  finished: boolean = false;
   orientationStepper: StepperOrientation = 'vertical'
   isMobile: boolean = false;
+  onlineService: boolean = true;
+  largerStorage: boolean = true;
+  customProfile: boolean = false;
 
   constructor() {
     this.step1Form = new FormGroup({
@@ -90,6 +93,10 @@ export class AppComponent implements AfterViewInit {
         }
       })
     }
+  }
+
+  finishSuscription() {
+    this.finished = true;
   }
 
 }
