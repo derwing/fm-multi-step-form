@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('stepper') stepper!: MatStepper;
-  step: number = 0;
+  step: number = 1;
   title = 'fm-multi-step-form';
   periodSwitch: boolean = false;
   step1Form;
