@@ -3,8 +3,8 @@
         <mat-card class="col-md-9 col-11 card-container px-4 py-3">
             <div class="row">
                 <div class="col-md-5 col-12 sidebar pt-2">
-                    <mat-stepper [orientation]="orientationStepper" #stepper [linear]="false">
-                        <mat-step>
+                    <mat-stepper [orientation]="orientationStepper" #stepper [linear]="true">
+                        <mat-step [stepControl]="step1Form">
                             <ng-template matStepLabel>
                                 <div class="hidden-sm-down">
                                     <span>STEP 1</span> <br> <span class="fw-bold">YOUR INFO</span>
@@ -12,7 +12,7 @@
 
                             </ng-template>
                         </mat-step>
-                        <mat-step>
+                        <mat-step [stepControl]="step1Form">
                             <!-- (click)="changeStep(1)" -->
                             <ng-template matStepLabel>
                                 <div class="hidden-sm-down">
@@ -45,11 +45,17 @@
                                 <p class="text-secondary mb-4">Please provide your name, email address, and phone number.</p>
                                 <form [formGroup]="step1Form">
                                     <div class="mb-3">
-                                        <label for="exampleInputName" class="form-label">Name</label>
+                                        <div class="col d-flex justify-content-between">
+                                            <label for="exampleInputName" class="form-label">Name</label>
+                                            <span class="form-text text-danger" *ngIf="step1Form.controls['name'].invalid">Valid Name and LastName</span>
+                                        </div>
                                         <input type="text" class="form-control" id="exampleInputName" aria-describedby="Name" formControlName="name" placeholder="e.g Stephen King">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <div class="col d-flex justify-content-between">
+                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                            <span class="form-text text-danger" *ngIf="step1Form.controls['email'].invalid">Valid email address</span>
+                                        </div>
                                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="e.g. stephenking@lorem.com">
                                     </div>
                                     <div class="mb-3">
@@ -271,7 +277,7 @@
 
                         <div class="mt-5" *ngIf="!finished" [ngClass]="{'text-end ': step === 0, 'd-flex justify-content-between ': step > 0, 'mobile-btns ': isMobile}">
                             <button *ngIf="step > 0" class="btn btn-outline-secondary border-0 ms-4" (click)="backStep()">Go Back</button>
-                            <button class="btn btn-marine" (click)="nextStep()" *ngIf="step < 3">Next Step</button>
+                            <button class="btn btn-marine" (click)="nextStep()" *ngIf="step < 3" [disabled]="step1Form.invalid">Next Step</button>
                             <button class="btn btn-primary" *ngIf="step > 2" (click)="finishSuscription()">Confirm</button>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStepper, StepperOrientation } from '@angular/cdk/stepper';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +9,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css'],
   providers: [{ provide: CdkStepper }],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   @ViewChild('stepper') stepper!: MatStepper;
-  step: number = 1;
+  step: number = 0;
   title = 'fm-multi-step-form';
   periodSwitch: boolean = false;
-  step1Form;
-  fadeOut: boolean = false;
-  ele0: any;
-  ele1: any;
-  ele2: any;
-  ele3: any;
-  click0: any;
-  click1: any;
-  click2: any;
-  click3: any;
   finished: boolean = false;
   orientationStepper: StepperOrientation = 'vertical'
   isMobile: boolean = false;
@@ -31,12 +21,21 @@ export class AppComponent implements AfterViewInit {
   largerStorage: boolean = true;
   customProfile: boolean = false;
 
-  constructor() {
-    this.step1Form = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required)
-    });
+  fullNamePatter: string = '([a-zA-Z]+) ([a-zA-Z]+)';
+  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+
+  step1Form = this._formBuilder.group({
+    name: ['Vanessa Mint', [Validators.required, Validators.pattern(this.fullNamePatter)]],
+    email: ['vanessamint@', [Validators.required, Validators.pattern(this.emailPattern)]],
+    phone: ['', Validators.required],
+  });
+
+  step2Form = this._formBuilder.group({
+    arcade: [false],
+    advance: [false],
+    pro: [false],
+  });
+  constructor(private _formBuilder: FormBuilder) {
     // todo: erase when finish
     setTimeout(() => {
       this.stepper.selectedIndex = this.step;
@@ -51,11 +50,14 @@ export class AppComponent implements AfterViewInit {
       this.isMobile = true;
       this.orientationStepper = 'horizontal';
     }
+
   }
 
   changeStep(index: number) {
+
     this.step = index;
     this.stepper.selectedIndex = this.step;
+
   }
 
   nextStep() {
@@ -68,36 +70,10 @@ export class AppComponent implements AfterViewInit {
     this.step = this.stepper._getFocusIndex()!;
   }
 
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit is triggered');
-    this.fadeOut = false;
-    let elements = document.querySelectorAll('mat-step-header');
-    if (elements) {
-      elements.forEach((e, i) => {
-        // console.log('e', i, ': ', e);
-        if (i === 0) {
-          this.ele0 = e;
-          this.click0 = e.addEventListener('click', () => this.changeStep(i));
-        }
-        else if (i === 1) {
-          this.ele1 = e;
-          this.click1 = e.addEventListener('click', () => this.changeStep(i));
-        }
-        else if (i === 2) {
-          this.ele2 = e;
-          this.click2 = e.addEventListener('click', () => this.changeStep(i));
-        }
-        else if (i === 3) {
-          this.ele3 = e;
-          this.click3 = e.addEventListener('click', () => this.changeStep(i));
-        }
-      })
-    }
-  }
-
   finishSuscription() {
     this.finished = true;
   }
+
 
 }
 
