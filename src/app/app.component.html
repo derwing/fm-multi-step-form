@@ -277,7 +277,7 @@
 
                         <div class="mt-5" *ngIf="!finished" [ngClass]="{'text-end ': step === 0, 'd-flex justify-content-between ': step > 0, 'mobile-btns ': isMobile}">
                             <button *ngIf="step > 0" class="btn btn-outline-secondary border-0 ms-4" (click)="backStep()">Go Back</button>
-                            <button class="btn btn-marine" (click)="nextStep()" *ngIf="step < 3" [disabled]="step1Form.invalid">Next Step</button>
+                            <button class="btn btn-marine" [ngClass]="{'animate__animated animate__shakeX': step1Form.valid}" (click)="nextStep()" *ngIf="step < 3" [disabled]="step1Form.invalid">Next Step</button>
                             <button class="btn btn-primary" *ngIf="step > 2" (click)="finishSuscription()">Confirm</button>
                         </div>
                     </div>
