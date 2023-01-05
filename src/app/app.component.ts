@@ -17,9 +17,7 @@ export class AppComponent {
   finished: boolean = false;
   orientationStepper: StepperOrientation = 'vertical'
   isMobile: boolean = false;
-  onlineService: boolean = true;
-  largerStorage: boolean = true;
-  customProfile: boolean = false;
+  totalAmount: number = 0;
 
   fullNamePatter: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
@@ -31,9 +29,15 @@ export class AppComponent {
   });
 
   step2Form = this._formBuilder.group({
-    arcade: [false],
+    arcade: [true],
     advance: [false],
     pro: [false],
+  });
+
+  step3Form = this._formBuilder.group({
+    onlineService: [true],
+    largerStorage: [true],
+    customProfile: [false],
   });
   constructor(private _formBuilder: FormBuilder) {
     // todo: erase when finish
@@ -42,6 +46,138 @@ export class AppComponent {
     }, 100);
 
     this.detectDevice();
+  }
+
+  get arcadeValue() {
+    return this.step2Form.controls['arcade'].value;
+  }
+
+  get advanceValue() {
+    return this.step2Form.controls['advance'].value;
+  }
+
+  get proValue() {
+    return this.step2Form.controls['pro'].value;
+  }
+
+  get onlineServiceValue() {
+    return this.step3Form.controls['onlineService'].value;
+  }
+
+  get largerStorageValue() {
+    return this.step3Form.controls['largerStorage'].value;
+  }
+
+  get customProfileValue() {
+    return this.step3Form.controls['customProfile'].value;
+  }
+
+
+  selectPlan(i: number) {
+    switch (i) {
+      case 0:
+        this.step2Form.patchValue({
+          arcade: true,
+          advance: false,
+          pro: false,
+        })
+        this.totalAmountCalculation();
+        break;
+      case 1:
+        this.step2Form.patchValue({
+          arcade: false,
+          advance: true,
+          pro: false,
+        })
+        this.totalAmountCalculation();
+        break;
+      case 2:
+        this.step2Form.patchValue({
+          arcade: false,
+          advance: false,
+          pro: true,
+        })
+        this.totalAmountCalculation();
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+  selectAddOns(i: number) {
+    switch (i) {
+      case 0:
+        this.step3Form.patchValue({
+          onlineService: !this.onlineServiceValue,
+        })
+        this.totalAmountCalculation();
+        break;
+      case 1:
+        this.step3Form.patchValue({
+          largerStorage: !this.largerStorageValue,
+        })
+        this.totalAmountCalculation();
+        break;
+      case 2:
+        this.step3Form.patchValue({
+          customProfile: !this.customProfileValue,
+        })
+        this.totalAmountCalculation();
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+
+  totalAmountCalculation() {
+    if (this.arcadeValue) {
+      this.totalAmount = 9;
+      if (this.onlineServiceValue) {
+        this.totalAmount += 1;
+      }
+      if (this.largerStorageValue) {
+        this.totalAmount += 2;
+      }
+      if (this.customProfileValue) {
+        this.totalAmount += 2;
+      }
+    }
+
+    if (this.advanceValue) {
+      this.totalAmount = 12;
+      if (this.onlineServiceValue) {
+        this.totalAmount += 1;
+      }
+      if (this.largerStorageValue) {
+        this.totalAmount += 2;
+      }
+      if (this.customProfileValue) {
+        this.totalAmount += 2;
+      }
+    }
+
+    if (this.proValue) {
+      this.totalAmount = 15;
+      if (this.onlineServiceValue) {
+        this.totalAmount += 1;
+      }
+      if (this.largerStorageValue) {
+        this.totalAmount += 2;
+      }
+      if (this.customProfileValue) {
+        this.totalAmount += 2;
+      }
+    }
+
+    if (this.periodSwitch) {
+      this.totalAmount *= 10;
+    }
+
   }
 
   detectDevice() {
@@ -61,6 +197,7 @@ export class AppComponent {
   }
 
   nextStep() {
+    this.totalAmountCalculation();
     this.stepper.selectedIndex = this.stepper._getFocusIndex()! + 1;
     this.step = this.stepper._getFocusIndex()!;
   }

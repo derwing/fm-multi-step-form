@@ -77,7 +77,7 @@
                                 <p class="text-secondary mb-4">You have the option of monthly or yearly billing</p>
                                 <div class="row">
                                     <div class="col-md-4 col-12 p-1" [ngClass]="{'mb-2': isMobile}">
-                                        <div class="card">
+                                        <div class="card" [ngClass]="{'ligthblue': arcadeValue}" (click)="selectPlan(0)">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-2 col-md-12">
@@ -85,14 +85,14 @@
                                                     </div>
                                                     <div class="col">
                                                         <h5 class="card-title mb-0">Arcade</h5>
-                                                        <p class="card-text text-secondary">$9/mo</p>
+                                                        <p class="card-text text-secondary">$<span *ngIf="!periodSwitch">9/mo</span><span *ngIf="periodSwitch">90/year</span></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12 p-1" [ngClass]="{'mb-2': isMobile}">
-                                        <div class="card">
+                                        <div class="card" [ngClass]="{'ligthblue': advanceValue}" (click)="selectPlan(1)">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-2 col-md-12">
@@ -100,14 +100,14 @@
                                                     </div>
                                                     <div class="col">
                                                         <h5 class="card-title mb-0">Advanced</h5>
-                                                        <span class="card-text text-secondary">$12/mo</span>
+                                                        <span class="card-text text-secondary">$<span *ngIf="!periodSwitch">12/mo</span><span *ngIf="periodSwitch">120/year</span></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12 p-1" [ngClass]="{'mb-2': isMobile}">
-                                        <div class="card">
+                                        <div class="card" [ngClass]="{'ligthblue': proValue}" (click)="selectPlan(2)">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-2 col-md-12">
@@ -116,7 +116,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <h5 class="card-title mb-0">Pro</h5>
-                                                        <span class="card-text text-secondary">$15/mo</span>
+                                                        <span class="card-text text-secondary">$<span *ngIf="!periodSwitch">15/mo</span><span *ngIf="periodSwitch">150/year</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,65 +143,67 @@
                                 <h1>Pick add-ons</h1>
                                 <p class="text-secondary mb-0">Add-ons help enhance your gaming experience</p>
                                 <div class="row">
-                                    <div class="col-12 mb-2">
-                                        <div class="card">
-                                            <div class="card-body pb-0" [ngClass]="{'ligthblue': onlineService}">
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="onlineService">
+                                    <form [formGroup]="step3Form">
+                                        <div class="col-12 mb-2">
+                                            <div class="card" [ngClass]="{'ligthblue': onlineServiceValue}" (click)="selectAddOns(0)">
+                                                <div class="card-body pb-0">
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" formControlName="onlineService">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col pe-0 add-ons-text">
+                                                            <h5 class="card-title mb-0 fw-bold">Online service</h5>
+                                                            <p class="text-secondary">Access to multiplayer games</p>
+                                                        </div>
+                                                        <div class="col-3 col-md-3 text-end p-0">
+                                                            <span class="card-text text-primary text-end">+$<span *ngIf="!periodSwitch">1/mo</span><span *ngIf="periodSwitch">10/year</span></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col pe-0 add-ons-text">
-                                                        <h5 class="card-title mb-0 fw-bold">Online service</h5>
-                                                        <p class="text-secondary">Access to multiplayer games</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 text-end p-0">
-                                                        <span class="card-text text-primary text-end">+$1/mo</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 mb-2">
-                                        <div class="card">
-                                            <div class="card-body pb-0" [ngClass]="{'ligthblue': largerStorage}">
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="largerStorage">
+                                        <div class="col-12 mb-2">
+                                            <div class="card" [ngClass]="{'ligthblue': largerStorageValue}" (click)="selectAddOns(1)">
+                                                <div class="card-body pb-0">
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" formControlName="largerStorage">
+                                                        </div>
+                                                        <div class="col pe-0 add-ons-text">
+                                                            <h5 class="card-title mb-0 fw-bold">Larger storage</h5>
+                                                            <p class="text-secondary">Extra 1TB of cloud save</p>
+                                                        </div>
+                                                        <div class="col-3 col-md-3 text-end p-0">
+                                                            <span class="card-text text-primary">+$<span *ngIf="!periodSwitch">2/mo</span><span *ngIf="periodSwitch">20/year</span></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="col pe-0 add-ons-text">
-                                                        <h5 class="card-title mb-0 fw-bold">Larger storage</h5>
-                                                        <p class="text-secondary">Extra 1TB of cloud save</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 text-end p-0">
-                                                        <span class="card-text text-primary">+$2/mo</span>
-                                                    </div>
-                                                </div>
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-body pb-0" [ngClass]="{'ligthblue': customProfile}">
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="customProfile">
+                                        <div class="col-12">
+                                            <div class="card" [ngClass]="{'ligthblue': customProfileValue}" (click)="selectAddOns(2)">
+                                                <div class="card-body pb-0">
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" formControlName="customProfile">
 
+                                                        </div>
+                                                        <div class="col pe-0 add-ons-text">
+                                                            <h5 class="card-title mb-0 fw-bold">Customizable profile</h5>
+                                                            <p class="text-secondary">Custom theme on your profile</p>
+                                                        </div>
+                                                        <div class="col-3 col-md-3 text-end p-0">
+                                                            <span class="card-text text-primary">+$<span *ngIf="!periodSwitch">2/mo</span><span *ngIf="periodSwitch">20/year</span></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="col pe-0 add-ons-text">
-                                                        <h5 class="card-title mb-0 fw-bold">Customizable profile</h5>
-                                                        <p class="text-secondary">Custom theme on your profile</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 text-end p-0">
-                                                        <span class="card-text text-primary">+$2/mo</span>
-                                                    </div>
+
                                                 </div>
-
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -225,30 +227,31 @@
                                             <div class="card-body pb-0 ligthblue rounded-4">
                                                 <div class="row mb-3">
                                                     <div class="col">
-                                                        <p class="mb-0 fw-bold">Arcade (Monthly)</p>
+                                                        <p class="mb-0 fw-bold" *ngIf="arcadeValue">Arcade <span *ngIf="!periodSwitch">/mo</span><span *ngIf="periodSwitch">/year</span></p>
+                                                        <p class="mb-0 fw-bold" *ngIf="advanceValue">Advance <span *ngIf="!periodSwitch">/mo</span><span *ngIf="periodSwitch">/year</span></p>
+                                                        <p class="mb-0 fw-bold" *ngIf="proValue">Pro <span *ngIf="!periodSwitch">/mo</span><span *ngIf="periodSwitch">/year</span></p>
                                                         <button class="btn btn-link p-0" (click)="changeStep(1)">Change</button>
                                                     </div>
-                                                    <div class="col-md-3 col-4 text-end">
-                                                        <span class="card-text text-secondary text-end">+$9/mo</span>
+                                                    <div class="col-md-4 col-5 text-end">
+                                                        <span class="card-text text-secondary text-end" *ngIf="arcadeValue">+$<span *ngIf="!periodSwitch">9/mo</span><span *ngIf="periodSwitch">90/year</span></span>
+                                                        <span class="card-text text-secondary text-end" *ngIf="advanceValue">+$<span *ngIf="!periodSwitch">12/mo</span><span *ngIf="periodSwitch">120/year</span></span>
+                                                        <span class="card-text text-secondary text-end" *ngIf="proValue">+$<span *ngIf="!periodSwitch">15/mo</span><span *ngIf="periodSwitch">150/year</span></span>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row mb-3">
                                                     <div class="col">
-                                                        <p class="mb-0 text-secondary">Online service</p>
+                                                        <p class="mb-0 text-secondary" *ngIf="onlineServiceValue">Online service</p>
+                                                        <p class="mb-0 text-secondary" *ngIf="largerStorageValue">Larger storage service</p>
+                                                        <p class="mb-0 text-secondary" *ngIf="customProfileValue">Custom profile</p>
                                                         <!-- <button class="btn btn-link p-0" (click)="changeStep(1)">Change</button> -->
                                                     </div>
-                                                    <div class="col-md-3 col-4 text-end">
-                                                        <span class="card-text text-secondary text-end">+$1/mo</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col">
-                                                        <p class="mb-0 text-secondary">Largest storage</p>
-                                                        <!-- <button class="btn btn-link p-0" (click)="changeStep(1)">Change</button> -->
-                                                    </div>
-                                                    <div class="col-md-3 col-4 text-end">
-                                                        <span class="card-text text-secondary text-end">+$2/mo</span>
+                                                    <div class="col-md-4 col-5 text-end">
+                                                        <span class="card-text text-secondary text-end" *ngIf="onlineServiceValue">+$<span *ngIf="!periodSwitch">1/mo</span><span *ngIf="periodSwitch">10/year</span></span>
+                                                        <br *ngIf="largerStorageValue">
+                                                        <span class="card-text text-secondary text-end" *ngIf="largerStorageValue">+$<span *ngIf="!periodSwitch">2/mo</span><span *ngIf="periodSwitch">20/year</span></span>
+                                                        <br *ngIf="customProfileValue">
+                                                        <span class="card-text text-secondary text-end" *ngIf="customProfileValue">+$<span *ngIf="!periodSwitch">2/mo</span><span *ngIf="periodSwitch">20/year</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -259,10 +262,11 @@
                                             <div class="card-body pb-0">
                                                 <div class="row">
                                                     <div class="col p-0 text-center">
-                                                        <p class="text-secondary">Total (per month)</p>
+                                                        <p class="text-secondary" *ngIf="periodSwitch">Total (per month)</p>
+                                                        <p class="text-secondary" *ngIf="!periodSwitch">Total (per year)</p>
                                                     </div>
                                                     <div class="col-md-4 col-6 text-end">
-                                                        <h4 class="card-text color-marine">+$12/mo</h4>
+                                                        <h4 class="card-text color-marine">${{totalAmount}}<span *ngIf="!periodSwitch">/mo</span><span *ngIf="periodSwitch">/year</span></h4>
                                                     </div>
                                                 </div>
 
@@ -277,7 +281,7 @@
 
                         <div class="mt-5" *ngIf="!finished" [ngClass]="{'text-end ': step === 0, 'd-flex justify-content-between ': step > 0, 'mobile-btns ': isMobile}">
                             <button *ngIf="step > 0" class="btn btn-outline-secondary border-0 ms-4" (click)="backStep()">Go Back</button>
-                            <button class="btn btn-marine" [ngClass]="{'animate__animated animate__shakeX': step1Form.valid}" (click)="nextStep()" *ngIf="step < 3" [disabled]="step1Form.invalid">Next Step</button>
+                            <button class="btn btn-marine" [ngClass]="{'animate__animated animate__bounce': step1Form.valid}" (click)="nextStep()" *ngIf="step < 3" [disabled]="step1Form.invalid">Next Step</button>
                             <button class="btn btn-primary" *ngIf="step > 2" (click)="finishSuscription()">Confirm</button>
                         </div>
                     </div>
