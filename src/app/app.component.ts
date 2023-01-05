@@ -27,7 +27,7 @@ export class AppComponent {
   step1Form = this._formBuilder.group({
     name: ['Vanessa Mint', [Validators.required, Validators.pattern(this.fullNamePatter)]],
     email: ['vanessamint@', [Validators.required, Validators.pattern(this.emailPattern)]],
-    phone: ['', Validators.minLength(10), Validators.required],
+    phone: ['', [Validators.minLength(10), Validators.required]],
   });
 
   step2Form = this._formBuilder.group({
