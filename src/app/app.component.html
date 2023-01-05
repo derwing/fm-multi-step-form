@@ -49,14 +49,14 @@
                                             <label for="exampleInputName" class="form-label">Name</label>
                                             <span class="form-text text-danger" *ngIf="step1Form.controls['name'].invalid">Valid Name and LastName</span>
                                         </div>
-                                        <input type="text" class="form-control" id="exampleInputName" aria-describedby="Name" formControlName="name" placeholder="e.g Stephen King">
+                                        <input type="text" class="form-control" [ngClass]="{'is-invalid': step1Form.controls['name'].invalid}" id="exampleInputName" aria-describedby="Name" formControlName="name" placeholder="e.g Stephen King">
                                     </div>
                                     <div class="mb-3">
                                         <div class="col d-flex justify-content-between">
                                             <label for="exampleInputEmail1" class="form-label">Email address</label>
                                             <span class="form-text text-danger" *ngIf="step1Form.controls['email'].invalid">Valid email address</span>
                                         </div>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="e.g. stephenking@lorem.com">
+                                        <input type="email" class="form-control" [ngClass]="{'is-invalid': step1Form.controls['email'].invalid}" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" placeholder="e.g. stephenking@lorem.com">
                                     </div>
                                     <div class="mb-3">
                                         <div class="col d-flex justify-content-between">
