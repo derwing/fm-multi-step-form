@@ -105,6 +105,7 @@
         left: 10%;
         background-image: none;
         max-width: 73%;
+        max-height: 80px;
     }
     .content {
         padding: 1rem!important;
