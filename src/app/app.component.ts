@@ -21,11 +21,13 @@ export class AppComponent {
 
   fullNamePatter: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  phonePatter: string = "[+][0-9]{10,13}";
+
 
   step1Form = this._formBuilder.group({
     name: ['Vanessa Mint', [Validators.required, Validators.pattern(this.fullNamePatter)]],
     email: ['vanessamint@', [Validators.required, Validators.pattern(this.emailPattern)]],
-    phone: ['', [Validators.minLength(10), Validators.required]],
+    phone: ['', [Validators.minLength(11), Validators.required, Validators.pattern(this.phonePatter)]],
   });
 
   step2Form = this._formBuilder.group({
@@ -70,6 +72,12 @@ export class AppComponent {
 
   get customProfileValue() {
     return this.step3Form.controls['customProfile'].value;
+  }
+
+  eraseWhiteSpace(input: string) {
+    this.step1Form.patchValue({
+      [input]: this.step1Form.get(input)?.value.trim()
+    });
   }
 
 

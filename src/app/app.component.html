@@ -47,9 +47,9 @@
                                     <div class="mb-3">
                                         <div class="col d-flex justify-content-between">
                                             <label for="exampleInputName" class="form-label">Name</label>
-                                            <span class="form-text text-danger" *ngIf="step1Form.controls['name'].invalid">Valid Name and LastName</span>
+                                            <span class="form-text text-danger" *ngIf="step1Form.controls['name'].invalid">Add Valid Name and LastName (no trailing spaces)</span>
                                         </div>
-                                        <input type="text" class="form-control" [ngClass]="{'is-invalid': step1Form.controls['name'].invalid}" id="exampleInputName" aria-describedby="Name" formControlName="name" placeholder="e.g Stephen King">
+                                        <input type="text" class="form-control" [ngClass]="{'is-invalid': step1Form.controls['name'].invalid}" id="exampleInputName" aria-describedby="Name" formControlName="name" placeholder="e.g Stephen King" (blur)="eraseWhiteSpace('name')">
                                     </div>
                                     <div class="mb-3">
                                         <div class="col d-flex justify-content-between">
@@ -62,10 +62,10 @@
                                         <div class="col d-flex justify-content-between">
                                             <label for="validationPhoneNumber" class="form-label">Phone Number</label>
                                             <span id="validationPhoneNumberFeedback" class="text-danger" *ngIf="step1Form.controls['phone'].invalid">
-                                                    This field is required
+                                                    Required (min 10 characters eg +1234567890)
                                                 </span>
                                         </div>
-                                        <input type="text" class="form-control" [ngClass]="{'is-invalid': step1Form.controls['phone'].invalid}" ng id="validationPhoneNumber" placeholder="e.g. +1 234 567 890" aria-describedby="validationPhoneNumberFeedback" formControlName="phone">
+                                        <input type="text" class="form-control" [ngClass]="{'is-invalid': step1Form.controls['phone'].invalid}" ng id="validationPhoneNumber" placeholder="e.g. +1 234 567 890" aria-describedby="validationPhoneNumberFeedback" formControlName="phone" (keyup)="eraseWhiteSpace('phone')">
                                     </div>
                                 </form>
                             </div>
